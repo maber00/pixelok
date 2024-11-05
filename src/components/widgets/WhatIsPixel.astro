@@ -1,76 +1,93 @@
 ---
 // src/components/WhatIsPixel.astro
 import { Image } from 'astro:assets';
-import coworking from '../../assets/images/Cokorking-Pixel-Living.webp'; // Asegúrate de tener las imágenes
+import coworking from '../../assets/images/Cokorking-Pixel-Living.webp';
 import building from '../../assets/images/PIXEL-LIVING-fachada.webp';
 ---
 
-<div class="max-w-7xl mx-auto px-4 py-16 ">
-    <button
-      type="button"
-      onclick="toggleContent()"
-      class="w-full bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-2xl text-left transition-colors flex items-center justify-between"
+<div class="max-w-7xl mx-auto px-4 py-16">
+  <button
+    type="button"
+    onclick="toggleContent()"
+    class="w-full bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-2xl text-left transition-colors flex items-center justify-between"
+  >
+    <h2 class="text-2xl md:text-4xl font-bold">¿QUÉ ES VIVIR EN MODO PIXEL?</h2>
+    <svg
+      id="arrow"
+      class="w-6 h-6 transition-transform duration-300"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
     >
-      <h2 class="text-2xl md:text-4xl font-bold">¿QUÉ ES VIVIR EN MODO PIXEL?</h2>
-      <svg 
-        id="arrow"
-        class="w-6 h-6 transition-transform duration-300"
-        fill="none" 
-        stroke="currentColor" 
-        viewBox="0 0 24 24"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
-    </button>
-  
-    <div id="content" class="hidden mt-8 animate-slide-out-bottom">
-      <div class="mb-12">
-        <h3 class="text-amber-400 text-2xl md:text-4xl font-bold tracking-tighter">
-          ES SER UNO MÁS Y UNO MENOS, UNO QUE<br />
-          <span class="text-4xl md:text-9xl tracking-tighter">DISFRUTA LOS</span><br />
-          <span class="text-4xl md:text-9xl tracking-tighter">ESPACIOS</span><br />
-          <span class="text-4xl md:text-9xl tracking-tighter">COLABORATIVOS</span>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+
+  <div id="content" class="hidden mt-8 animate-slide-out-bottom">
+    <div class="mb-12">
+      <div class="mb-4">
+        <h3 class="text-lg md:text-2xl md:text-4xl font-bold tracking-tighter">
+          <span class="md:inline bg-amber-400 text-white md:bg-transparent md:text-amber-400 p-2 md:p-0 rounded-lg">
+            ES SER UNO MÁS Y UNO MENOS, UNO QUE
+          </span>
         </h3>
       </div>
-  
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div class="space-y-8">
-          <Image
-            src={coworking}
-            alt="Espacio de coworking interior"
-            class="w-full h-auto rounded-lg shadow-lg"
-            width={600}
-            height={400}
-          />
-          <p class="text-white bg-blue-700 p-6 rounded-2xl border-4 border-blue-800  text-2xl md:text-3xl font-bold leading-relaxed">
-            y uno menos en la oficina, uno que se moviliza mejor y uno menos en el
-          </p>
-        </div>
-  
-        <div class="space-y-8">
-          <p class="text-white bg-blue-700 p-6 rounded-2xl border-4 border-blue-800 text-2xl md:text-3xl font-bold leading-relaxed">
-            Uno que encuentra grandeza en sus espacios y uno menos que los desaprovecha.
-          </p>
-          <Image
-            src={building}
-            alt="Edificio exterior"
-            class="w-full h-auto rounded-lg shadow-lg"
-            width={600}
-            height={400}
-          />
-        </div>
+
+      <div>
+        <h3 class="text-amber-400 text-lg md:text-2xl md:text-4xl font-bold tracking-tighter">
+          <span class="text-5xl md:text-9xl tracking-tighter">DISFRUTA LOS</span><br />
+          <span class="text-5xl md:text-9xl tracking-tighter">ESPACIOS</span><br />
+          <span class="text-5xl md:text-9xl tracking-tighter">COLABORATIVOS</span>
+        </h3>
       </div>
     </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-0 ">
+      {/* Primera fila - Imagen y texto lado a lado */}
+      <div class="mb-2 order-last md:order-first">
+        <Image
+          src={coworking}
+          alt="Espacio de coworking interior"
+          class="w-full h-[300px] rounded-lg object-cover "
+          width={600}
+          height={400}
+        />
+      </div>
+      <div class="m-2">
+        <p class="text-white bg-blue-700 p-6 h-[300px] rounded-lg flex items-center text-2xl md:text-5xl font-bold leading-none uppercase">
+          Y UNO MENOS EN LA OFICINA, UNO QUE SE MOVILIZA MEJOR Y UNO MENOS EN EL
+        </p>
+      </div>
+    </div>
+      
+      
+      
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+
+      {/* Segunda fila - Texto e imagen lado a lado */}
+      <p class="text-white bg-blue-700 p-6 h-[300px] rounded-lg mb-2 flex items-center text-2xl md:text-5xl font-bold leading-none uppercase">
+        Uno que encuentra grandeza en sus espacios y uno menos que los desaprovecha.
+      </p>
+      <Image
+        src={building}
+        alt="Edificio exterior"
+        class="w-full h-[300px] rounded-lg object-cover order-last"
+        width={600}
+        height={400}
+      />
+    </div>
+    
+    </div>
   </div>
-  
-  <script is:inline>
-    // Definir la función en el ámbito global
-    function toggleContent() {
-      const content = document.getElementById('content');
-      const arrow = document.getElementById('arrow');
-      if (content && arrow) {
-        content.classList.toggle('hidden');
-        arrow.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
-      }
+</div>
+
+<script is:inline>
+  function toggleContent() {
+    const content = document.getElementById('content');
+    const arrow = document.getElementById('arrow');
+    if (content && arrow) {
+      content.classList.toggle('hidden');
+      arrow.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
     }
-  </script>
+  }
+</script>

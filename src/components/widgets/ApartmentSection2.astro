@@ -5,7 +5,7 @@ import apartaestudioAlcoba from '../../assets/images/apartaestudio-alcoba.webp';
 import apartaestudiosBogota from '../../assets/images/apartaestudios-bogota.webp';
 ---
 
-<div class="px-8 md:px-16 lg:px-24 pb-8 md:pb-16 lg:pb-24"> {/* Agregado padding bottom */}
+<div class="apartment-section2 px-8 md:px-16 lg:px-24 pb-8 md:pb-16 lg:pb-24">
     <section class="w-full bg-blue-400 p-6 rounded-3xl">
     <div class="bg-white rounded-3xl p-6">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -150,6 +150,8 @@ import apartaestudiosBogota from '../../assets/images/apartaestudios-bogota.webp
     <img id="modalImg" src="" alt="" class="max-h-[90vh] max-w-[90vw] object-contain" />
   </div>
 </div>
+</div>
+
 
 <style>
   .glitch-text {
@@ -179,48 +181,75 @@ import apartaestudiosBogota from '../../assets/images/apartaestudios-bogota.webp
 </style>
 
 <script>
-  function setupGallery() {
-    const modal = document.getElementById('galleryModal');
-    const modalImg = document.getElementById('modalImg') as HTMLImageElement;
-    const images = document.querySelectorAll('img[class*="object-cover"]');
-    let currentIndex = 0;
-
-    if (!modal || !modalImg) return;
-
-    // Abrir modal
-    images.forEach((img, index) => {
-      img.addEventListener('click', () => {
-        currentIndex = index;
-        modalImg.src = (img as HTMLImageElement).src;
-        modalImg.alt = (img as HTMLImageElement).alt;
-        modal.classList.remove('hidden');
+    class GalleryManager {
+      private modal: HTMLElement | null;
+      private modalImg: HTMLImageElement | null;
+      private images: NodeListOf<Element>;
+      private currentIndex: number;
+      private componentRoot: Element;
+  
+      constructor(componentRoot: Element) {
+        this.componentRoot = componentRoot;
+        this.modal = componentRoot.querySelector('#galleryModal');
+        this.modalImg = componentRoot.querySelector('#modalImg');
+        this.images = componentRoot.querySelectorAll('img[class*="object-cover"]');
+        this.currentIndex = 0;
+        
+        this.init();
+      }
+  
+      private init() {
+        if (!this.modal || !this.modalImg) return;
+  
+        // Abrir modal
+        this.images.forEach((img, index) => {
+          img.addEventListener('click', () => {
+            this.currentIndex = index;
+            if (this.modalImg) {
+              this.modalImg.src = (img as HTMLImageElement).src;
+              this.modalImg.alt = (img as HTMLImageElement).alt;
+            }
+            this.modal?.classList.remove('hidden');
+          });
+        });
+  
+        // Cerrar modal
+        this.componentRoot.querySelector('#closeModalBtn')?.addEventListener('click', () => {
+          this.modal?.classList.add('hidden');
+        });
+  
+        // Navegación
+        this.componentRoot.querySelector('#nextBtn')?.addEventListener('click', () => {
+          this.navigateGallery('next');
+        });
+  
+        this.componentRoot.querySelector('#prevBtn')?.addEventListener('click', () => {
+          this.navigateGallery('prev');
+        });
+      }
+  
+      private navigateGallery(direction: 'next' | 'prev') {
+        if (direction === 'next') {
+          this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        } else {
+          this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+        }
+        
+        const image = this.images[this.currentIndex] as HTMLImageElement;
+        if (this.modalImg) {
+          this.modalImg.src = image.src;
+          this.modalImg.alt = image.alt;
+        }
+      }
+    }
+  
+    function setupGallery() {
+      // Inicializar el gallery manager para cada instancia del componente
+      document.querySelectorAll('.apartment-section2').forEach(component => {
+        new GalleryManager(component);
       });
-    });
-
-    // Cerrar modal
-    document.getElementById('closeModalBtn')?.addEventListener('click', () => {
-      modal.classList.add('hidden');
-    });
-
-    // Navegación
-    document.getElementById('nextBtn')?.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % images.length;
-      const nextImage = images[currentIndex] as HTMLImageElement;
-      modalImg.src = nextImage.src;
-      modalImg.alt = nextImage.alt;
-    });
-
-    document.getElementById('prevBtn')?.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      const prevImage = images[currentIndex] as HTMLImageElement;
-      modalImg.src = prevImage.src;
-      modalImg.alt = prevImage.alt;
-    });
-  }
-
-  // Setup inicial
-  setupGallery();
-
-  // Re-setup para navegación de Astro
-  document.addEventListener('astro:page-load', setupGallery);
-</script>
+    }
+  
+    setupGallery();
+    document.addEventListener('astro:page-load', setupGallery);
+  </script>
