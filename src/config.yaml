@@ -1,6 +1,6 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: Pixelliving
+  site: 'https://Pixelliving.vercel.app'
   base: '/'
   trailingSlash: false
 
@@ -9,8 +9,8 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
+    default: Pixeliving
+    template: '%s — Pixeliving'
   description: "\U0001F680 pixelliving para alquiler"
   robots:
     index: true
