@@ -1,0 +1,120 @@
+---
+// src/components/widgets/ApartmentSection.astro
+import { Image } from 'astro:assets';
+
+// Importar imágenes (asegúrate de tener las imágenes en las rutas correctas)
+import roomImage1 from '~/assets/images/apartaestudios-bogota.webp';
+import roomImage2 from '~/assets/images/apartaestudio-alcoba.webp';
+import roomImage3 from '~/assets/images/apartaestudios-bogota.webp';
+---
+
+<section class="w-full bg-blue-400 p-8 rounded-3xl">
+  <div class="bg-white rounded-3xl p-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {/* Columna izquierda - Información */}
+      <div>
+        <h2 class="text-6xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500 glitch-text">
+          BOSS<br />ROOM
+        </h2>
+
+        <div class="space-y-4 text-gray-700">
+          <p>Descripción del Apartamento</p>
+          <p>Metros</p>
+          <p>Precio Alquiler - Incluye servicios?</p>
+          <p>Precio inversión</p>
+          <p>Pet friendly?</p>
+          <p>TV?</p>
+        </div>
+
+        {/* Tabla de Precios */}
+        <div class="mt-8 bg-gray-100 rounded-lg p-4">
+          <div class="grid grid-cols-4 gap-4">
+            <div class="text-center">
+              <h3 class="font-bold mb-2">1 Mes</h3>
+              <p class="font-semibold">$ 3,000,000</p>
+              <p class="text-sm text-gray-500">COP MENSUAL</p>
+            </div>
+            <div class="text-center">
+              <h3 class="font-bold mb-2">3 Meses</h3>
+              <p class="font-semibold">$ 2,700,000</p>
+              <p class="text-sm text-gray-500">COP MENSUAL</p>
+            </div>
+            <div class="text-center">
+              <h3 class="font-bold mb-2">6 Meses</h3>
+              <p class="font-semibold">$ 2,500,000</p>
+              <p class="text-sm text-gray-500">COP MENSUAL</p>
+            </div>
+            <div class="text-center">
+              <h3 class="font-bold mb-2">12 Meses</h3>
+              <p class="font-semibold">$ 2,380,000</p>
+              <p class="text-sm text-gray-500">COP MENSUAL</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Columna derecha - Imágenes y Tour Virtual */}
+      <div class="space-y-4">
+        <div class="w-full h-64 overflow-hidden rounded-xl">
+          <Image 
+            src={roomImage1} 
+            alt="Vista principal del apartamento" 
+            class="w-full h-full object-cover"
+            width={800}
+            height={400}
+          />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="h-48 overflow-hidden rounded-xl">
+            <Image 
+              src={roomImage2} 
+              alt="Vista interior del apartamento" 
+              class="w-full h-full object-cover"
+              width={400}
+              height={300}
+            />
+          </div>
+          <div class="h-48 overflow-hidden rounded-xl">
+            <Image 
+              src={roomImage3} 
+              alt="Vista de la terraza" 
+              class="w-full h-full object-cover"
+              width={400}
+              height={300}
+            />
+          </div>
+        </div>
+        <button class="w-full bg-blue-600 text-white py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition-colors">
+          Tour Virtual
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .glitch-text {
+    text-shadow: 
+      2px 2px #ff00ff,
+      -2px -2px #00ffff;
+    animation: glitch 2s infinite;
+  }
+
+  @keyframes glitch {
+    0% {
+      text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff;
+    }
+    25% {
+      text-shadow: -2px 2px #ff00ff, 2px -2px #00ffff;
+    }
+    50% {
+      text-shadow: 2px -2px #ff00ff, -2px 2px #00ffff;
+    }
+    75% {
+      text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff;
+    }
+    100% {
+      text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff;
+    }
+  }
+</style>

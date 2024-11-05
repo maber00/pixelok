@@ -1,0 +1,118 @@
+---
+// src/components/HeroGridSection.astro
+import { Image } from 'astro:assets';
+import coworking from '../../assets/images/Cokorking-Pixel-Living.webp';
+import terraza from '../../assets/images/193-Terraza-006HD.webp';
+---
+
+<section class="w-full h-[80vh] px-8">
+  <div class="h-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 relative">
+    <!-- Primera columna: Vive en modo pixel -->
+    <div class="bg-emerald-500 rounded-lg border-4 border-emerald-600 flex items-center p-4 md:p-0 justify-start md:justify-center h-full">
+      <h1 class="text-white text-5xl md:text-7xl font-bold text-left">
+        VIVE EN<br />MODO<br />PIXEL
+      </h1>
+    </div>
+
+    <!-- Columna media: Video + Imagen -->
+    <div class="flex flex-col gap-4 h-full normal-content">
+      <!-- Video de YouTube -->
+      <div class="w-full h-[45%] bg-yellow-400 rounded-lg overflow-hidden">
+        <iframe
+          class="w-full h-full"
+          src="https://www.youtube.com/embed/_-am3wcfrig"
+          title="YouTube video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <!-- Imagen inferior -->
+      <div class="flex-1 relative rounded-lg overflow-hidden cursor-pointer image-container" data-position="bottom">
+        <Image
+          src={coworking}
+          alt="Coworking Pixel Living"
+          class="w-full h-full object-cover"
+          width={800}
+          height={600}
+        />
+      </div>
+    </div>
+
+    <!-- Última columna: Imagen completa -->
+    <div class="relative rounded-lg overflow-hidden cursor-pointer image-container h-full" data-position="right">
+      <Image
+        src={terraza}
+        alt="Terraza"
+        class="w-full h-full object-cover"
+        width={800}
+        height={1200}
+      />
+    </div>
+
+    <!-- Contenedor de imagen expandida -->
+    <div class="expanded-image-container hidden absolute top-0 left-1/3 w-2/3 h-full bg-white rounded-lg overflow-hidden z-20">
+      <img class="w-full h-full object-cover" src="" alt="Expanded image" />
+      <button class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .image-container {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .image-container:hover img {
+    transform: scale(1.02);
+  }
+
+  .expanded-image-container {
+    transition: all 0.3s ease-in-out;
+  }
+</style>
+
+<script>
+  function setupImageGallery() {
+    const expandedContainer = document.querySelector<HTMLElement>('.expanded-image-container');
+    const normalContent = document.querySelector<HTMLElement>('.normal-content');
+    const containers = document.querySelectorAll<HTMLElement>('.image-container');
+    const expandedImage = expandedContainer?.querySelector('img');
+    const closeButton = expandedContainer?.querySelector('button');
+    
+    function showExpandedImage(imageSrc: string) {
+      if (expandedContainer && expandedImage && normalContent) {
+        expandedImage.src = imageSrc;
+        expandedContainer.classList.remove('hidden');
+        normalContent.style.visibility = 'hidden';
+      }
+    }
+
+    function hideExpandedImage() {
+      if (expandedContainer && normalContent) {
+        expandedContainer.classList.add('hidden');
+        normalContent.style.visibility = 'visible';
+      }
+    }
+
+    containers.forEach(container => {
+      container.addEventListener('click', () => {
+        const img = container.querySelector('img');
+        if (img) {
+          showExpandedImage(img.src);
+        }
+      });
+    });
+
+    closeButton?.addEventListener('click', hideExpandedImage);
+  }
+
+  // Ejecutar en carga inicial y en transiciones de página
+  setupImageGallery();
+  document.addEventListener('astro:page-load', setupImageGallery);
+</script>

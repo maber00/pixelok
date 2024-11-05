@@ -1,0 +1,76 @@
+---
+// src/components/WhatIsPixel.astro
+import { Image } from 'astro:assets';
+import coworking from '../../assets/images/Cokorking-Pixel-Living.webp'; // Asegúrate de tener las imágenes
+import building from '../../assets/images/PIXEL-LIVING-fachada.webp';
+---
+
+<div class="max-w-7xl mx-auto px-4 py-16 ">
+    <button
+      type="button"
+      onclick="toggleContent()"
+      class="w-full bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-2xl text-left transition-colors flex items-center justify-between"
+    >
+      <h2 class="text-2xl md:text-4xl font-bold">¿QUÉ ES VIVIR EN MODO PIXEL?</h2>
+      <svg 
+        id="arrow"
+        class="w-6 h-6 transition-transform duration-300"
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+  
+    <div id="content" class="hidden mt-8 animate-slide-out-bottom">
+      <div class="mb-12">
+        <h3 class="text-amber-400 text-2xl md:text-4xl font-bold tracking-tighter">
+          ES SER UNO MÁS Y UNO MENOS, UNO QUE<br />
+          <span class="text-4xl md:text-9xl tracking-tighter">DISFRUTA LOS</span><br />
+          <span class="text-4xl md:text-9xl tracking-tighter">ESPACIOS</span><br />
+          <span class="text-4xl md:text-9xl tracking-tighter">COLABORATIVOS</span>
+        </h3>
+      </div>
+  
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="space-y-8">
+          <Image
+            src={coworking}
+            alt="Espacio de coworking interior"
+            class="w-full h-auto rounded-lg shadow-lg"
+            width={600}
+            height={400}
+          />
+          <p class="text-amber-400 text-2xl md:text-3xl font-bold leading-relaxed">
+            y uno menos en la oficina, uno que se moviliza mejor y uno menos en el
+          </p>
+        </div>
+  
+        <div class="space-y-8">
+          <p class="text-amber-400 text-2xl md:text-3xl font-bold leading-relaxed">
+            Uno que encuentra grandeza en sus espacios y uno menos que los desaprovecha.
+          </p>
+          <Image
+            src={building}
+            alt="Edificio exterior"
+            class="w-full h-auto rounded-lg shadow-lg"
+            width={600}
+            height={400}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script is:inline>
+    // Definir la función en el ámbito global
+    function toggleContent() {
+      const content = document.getElementById('content');
+      const arrow = document.getElementById('arrow');
+      if (content && arrow) {
+        content.classList.toggle('hidden');
+        arrow.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
+      }
+    }
+  </script>
