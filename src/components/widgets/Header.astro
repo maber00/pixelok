@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
-import Logo from '~/components/Logo.astro';
+import { Image } from 'astro:assets'; // Añadimos esta importación
+import logo from '../../assets/images/logo-pixel-living.webp';
 import ToggleTheme from '~/components/common/ToggleTheme.astro';
 
 const links = [
@@ -12,19 +13,25 @@ const links = [
 ];
 ---
 
-<header class="sticky top-0 z-40 flex-none mx-auto w-full transition-all duration-100 ease-in">
+<header class="sticky top-0 z-40 flex-none mx-auto w-full p-4 md:px-14 transition-all duration-100 ease-in">
   <div class="mx-4 my-2">
-    <div class="relative bg-amber-100 dark:bg-red-500 rounded-full"> {/* Cambié a rojo en modo oscuro */}
+    <div class="relative bg-red-500 dark:bg-emerald-500 rounded-full">
       <div class="py-3 px-6 mx-auto max-w-7xl">
         <div class="flex items-center justify-between">
           {/* Logo */}
           <div class="flex items-center">
             <a class="flex items-center" href="/">
-              <Logo />
+              <Image 
+                src={logo} 
+                alt="Pixel Living Logo" 
+                class="h-8 md:h-10 w-auto" 
+                width={120} 
+                height={40}
+              />
             </a>
           </div>
 
-          {/* Navegación Desktop */}
+          {/* Resto del código igual */}
           <nav class="hidden md:flex h-full">
             <ul class="flex gap-8 h-full items-center">
               {
@@ -32,7 +39,7 @@ const links = [
                   <li>
                     <a
                       href={href}
-                      class="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-amber-200 text-sm font-medium transition duration-150 ease-in-out"
+                      class="text-white hover:text-red-100 dark:hover:text-emerald-100 text-sm font-medium transition duration-150 ease-in-out"
                     >
                       {text}
                     </a>
@@ -40,17 +47,16 @@ const links = [
                 ))
               }
               <li>
-                <ToggleTheme iconClass="w-6 h-6 dark:text-white" />
+                <ToggleTheme iconClass="w-6 h-6 text-white" />
               </li>
             </ul>
           </nav>
 
-          {/* Toggle Menú Móvil y Theme en móvil */}
           <div class="flex items-center gap-4 md:hidden">
-            <ToggleTheme iconClass="w-6 h-6 dark:text-white" />
+            <ToggleTheme iconClass="w-6 h-6 text-white" />
             <button
               type="button"
-              class="text-gray-500 dark:text-white hover:text-gray-600 dark:hover:text-amber-200 rounded-lg text-sm p-2.5 inline-flex items-center transition"
+              class="text-white hover:text-red-100 dark:hover:text-emerald-100 rounded-lg text-sm p-2.5 inline-flex items-center transition"
               aria-label="Toggle Menu"
             >
               <Icon name="tabler:menu" class="w-6 h-6" />
@@ -64,10 +70,16 @@ const links = [
 
 <!-- Menú Móvil -->
 <div class="hidden md:hidden fixed inset-0 z-50 bg-gray-800/60 backdrop-blur-sm">
-  <div class="fixed right-0 top-0 bottom-0 w-full max-w-xs bg-white dark:bg-red-500">
+  <div class="fixed right-0 top-0 bottom-0 w-full max-w-xs bg-red-500 dark:bg-emerald-500">
     <div class="flex justify-between items-center p-6">
-      <Logo />
-      <button type="button" class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+      <Image 
+        src={logo} 
+        alt="Pixel Living Logo" 
+        class="h-8 w-auto" 
+        width={120} 
+        height={40}
+      />
+      <button type="button" class="text-white hover:text-red-100 dark:hover:text-emerald-100">
         <Icon name="tabler:x" class="w-6 h-6" />
       </button>
     </div>
@@ -78,7 +90,7 @@ const links = [
             <li>
               <a
                 href={href}
-                class="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-base font-medium py-2"
+                class="block text-white hover:text-red-100 dark:hover:text-emerald-100 text-base font-medium py-2"
               >
                 {text}
               </a>

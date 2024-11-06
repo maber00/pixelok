@@ -2,12 +2,12 @@
 // src/components/ContactForm.astro
 ---
 
-<div class="flex flex-col md:flex-row gap-8 items-center max-w-6xl mx-auto p-6">
+<div class="flex flex-col md:flex-row gap-8 text-blue-900 font-bold text-lm dark:text-white items-center max-w-6xl mx-auto p-6">
     <!-- Formulario -->
     <form id="contactForm" class="flex-1 space-y-4">
       <div class="space-y-4 ">
         <div>
-          <label class="block text-red-500 text-sm mb-1">Nombre</label>
+          <label class="block  mb-1">Nombre</label>
           <input
             type="text"
             name="nombre"
@@ -17,7 +17,7 @@
         </div>
         
         <div>
-          <label class="block text-red-500 text-sm mb-1">Apellido</label>
+          <label class="block  mb-1">Apellido</label>
           <input
             type="text"
             name="apellido"
@@ -27,7 +27,7 @@
         </div>
   
         <div>
-          <label class="block text-red-500 text-sm mb-1">Teléfono</label>
+          <label class="block  mb-1">Teléfono</label>
           <input
             type="tel"
             name="telefono"
@@ -37,7 +37,7 @@
         </div>
   
         <div>
-          <label class="block text-red-500 text-sm mb-1">Email</label>
+          <label class="block  mb-1">Email</label>
           <input
             type="email"
             name="email"
@@ -54,7 +54,7 @@
             required
             class="mt-1"
           />
-          <label for="politica" class="text-red-500 text-sm">
+          <label for="politica" class="">
             Acepto Política de Tratamiento de Datos Personales.
           </label>
         </div>
@@ -63,7 +63,7 @@
   
     <!-- Panel derecho con mensaje - Ahora con altura y padding ajustados para coincidir con el formulario -->
     <div class="flex-1 flex items-stretch">
-      <div class="bg-teal-500 w-full rounded-lg border-4 border-emerald-600 shadow-lg flex items-center justify-center p-8">
+      <div class="bg-yellow-500 w-full rounded-lg border-4 border-yellow-600 shadow-lg flex items-center justify-center p-8">
         <h2 class="text-white text-4xl md:text-6xl  font-bold leading-tight text-right">
           VIVIR DIFERENTE<br />EN TU PROPIO<br />ESPACIO Y A TU<br />MANERA
         </h2>

@@ -1,0 +1,118 @@
+---
+import { Image } from 'astro:assets';
+import terrazaImage from '../../assets/images/193-Terraza-006HD.webp';
+import biciImage1 from '../../assets/images/193-Terraza-006HD.webp';
+import biciImage2 from '../../assets/images/193-Terraza-006HD.webp';
+import bbqImage1 from '../../assets/images/193-Terraza-006HD.webp';
+import bbqImage2 from '../../assets/images/193-Terraza-006HD.webp';
+import fitnessImage1 from '../../assets/images/193-Terraza-006HD.webp';
+import fitnessImage2 from '../../assets/images/193-Terraza-006HD.webp';
+import fitnessImage3 from '../../assets/images/193-Terraza-006HD.webp';
+
+
+
+// Importa tus imágenes
+---
+
+<div class="px-8 md:px-16 lg:px-24 pb-8 md:pb-16 lg:pb-24">
+  <h2 class="text-4xl md:text-5xl font-bold text-amber-400 text-center mb-8">
+    TUS ESPACIO AFUERA DE TU ESPACIO
+  </h2>
+
+  <div class="grid grid-cols-2 gap-1"> {/* Gap mínimo para que parezca más un edificio */}
+    {/* Fila 1 */}
+    <div class="bg-emerald-400 p-6 aspect-square">
+      <h3 class="text-2xl font-bold text-white mb-2">TERRAZA</h3>
+      <p class="text-white text-sm mb-4">Zona Social & Training Space</p>
+      <Image 
+        src={terrazaImage} 
+        alt="Terraza" 
+        class="w-full h-[calc(100%-4rem)] object-cover rounded"
+        width={400}
+        height={400}
+      />
+    </div>
+
+    <div class="bg-orange-500 p-6 aspect-square">
+      <h3 class="text-2xl font-bold text-white mb-2">BICI LOVERS</h3>
+      <p class="text-white text-sm mb-4">Parking & Taller de bicis</p>
+      <div class="grid grid-cols-2 gap-2 h-[calc(100%-4rem)]">
+        <Image 
+          src={biciImage1} 
+          alt="Bici parking" 
+          class="w-full h-full object-cover rounded"
+          width={200}
+          height={200}
+        />
+        <Image 
+          src={biciImage2} 
+          alt="Bici taller" 
+          class="w-full h-full object-cover rounded"
+          width={200}
+          height={200}
+        />
+      </div>
+    </div>
+
+    {/* Fila 2 */}
+    <div class="bg-amber-300 p-6 aspect-square">
+      <h3 class="text-2xl font-bold text-white mb-2">FIRE PITS & ZONA BBQ</h3>
+      <p class="text-white text-sm mb-4">Comparte con tu comunidad y amigos</p>
+      <div class="grid grid-cols-2 gap-2 h-[calc(100%-4rem)]">
+        <Image 
+          src={bbqImage1} 
+          alt="Fire pit" 
+          class="w-full h-full object-cover rounded"
+          width={200}
+          height={200}
+        />
+        <Image 
+          src={bbqImage2} 
+          alt="BBQ" 
+          class="w-full h-full object-cover rounded"
+          width={200}
+          height={200}
+        />
+      </div>
+    </div>
+
+    <div class="bg-blue-400 p-6 aspect-square">
+      <h3 class="text-2xl font-bold text-white mb-2">FITNESS LOVERS</h3>
+      <p class="text-white text-sm mb-4">Espacio para entrenar, TRX & Zona de Yoga</p>
+      <div class="grid grid-cols-3 gap-2 h-[calc(100%-4rem)]">
+        <Image 
+          src={fitnessImage1} 
+          alt="Training" 
+          class="w-full h-full object-cover rounded"
+          width={133}
+          height={200}
+        />
+        <Image 
+          src={fitnessImage2} 
+          alt="TRX" 
+          class="w-full h-full object-cover rounded"
+          width={133}
+          height={200}
+        />
+        <Image 
+          src={fitnessImage3} 
+          alt="Yoga" 
+          class="w-full h-full object-cover rounded"
+          width={133}
+          height={200}
+        />
+      </div>
+    </div>
+
+    {/* Fila 3 */}
+    <div class="bg-gray-800 p-6 aspect-square">
+      <h3 class="text-2xl font-bold text-white mb-2">ZONA COWORKING & SALA DE JUNTAS</h3>
+      <p class="text-white text-sm">Un nespacio, miles de ideas</p>
+    </div>
+
+    <div class="bg-pink-300 p-6 aspect-square">
+      <h3 class="text-2xl font-bold text-white mb-2">ZONA PET</h3>
+      <p class="text-white text-sm">Comparte con tu mejor amigo peludo</p>
+    </div>
+  </div>
+</div>
