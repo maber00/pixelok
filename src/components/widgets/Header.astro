@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { Image } from 'astro:assets'; // Añadimos esta importación
+import { Image } from 'astro:assets';
 import logo from '../../assets/images/logo-pixel-living.webp';
 import ToggleTheme from '~/components/common/ToggleTheme.astro';
 
@@ -13,78 +13,69 @@ const links = [
 ];
 ---
 
-<header class="sticky top-0 z-40 flex-none mx-auto w-full p-4 md:px-14 transition-all duration-100 ease-in">
-  <div class="mx-4 my-2">
-    <div class="relative bg-red-500 dark:bg-emerald-500 rounded-full">
-      <div class="py-3 px-6 mx-auto max-w-7xl">
-        <div class="flex items-center justify-between">
-          {/* Logo */}
-          <div class="flex items-center">
-            <a class="flex items-center" href="/">
-              <Image 
-                src={logo} 
-                alt="Pixel Living Logo" 
-                class="h-8 md:h-10 w-auto" 
-                width={120} 
-                height={40}
-              />
-            </a>
-          </div>
+<div class="relative">
+  <!-- Header Principal -->
+  <header id="main-header" class="sticky top-0 z-50 flex-none mx-auto w-full transition-all duration-300 ease-in transform">
+    <div class="relative mx-4 my-2 p-4 md:px-14">
+      <div class="relative bg-red-500 dark:bg-emerald-500 rounded-full z-20">
+        <div class="py-3 px-6 mx-auto max-w-7xl">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <a class="flex items-center" href="/">
+                <Image 
+                  src={logo} 
+                  alt="Pixel Living Logo" 
+                  class="h-8 md:h-10 w-auto" 
+                  width={120} 
+                  height={40}
+                />
+              </a>
+            </div>
 
-          {/* Resto del código igual */}
-          <nav class="hidden md:flex h-full">
-            <ul class="flex gap-8 h-full items-center">
-              {
-                links.map(({ text, href }) => (
-                  <li>
-                    <a
-                      href={href}
-                      class="text-white hover:text-red-100 dark:hover:text-emerald-100 text-sm font-medium transition duration-150 ease-in-out"
-                    >
-                      {text}
-                    </a>
-                  </li>
-                ))
-              }
-              <li>
-                <ToggleTheme iconClass="w-6 h-6 text-white" />
-              </li>
-            </ul>
-          </nav>
+            <nav class="hidden md:flex h-full">
+              <ul class="flex gap-8 h-full items-center">
+                {
+                  links.map(({ text, href }) => (
+                    <li>
+                      <a
+                        href={href}
+                        class="text-white hover:text-red-100 dark:hover:text-emerald-100 text-sm font-medium transition duration-150 ease-in-out"
+                      >
+                        {text}
+                      </a>
+                    </li>
+                  ))
+                }
+                <li>
+                  <ToggleTheme iconClass="w-6 h-6 text-white" />
+                </li>
+              </ul>
+            </nav>
 
-          <div class="flex items-center gap-4 md:hidden">
-            <ToggleTheme iconClass="w-6 h-6 text-white" />
-            <button
-              type="button"
-              class="text-white hover:text-red-100 dark:hover:text-emerald-100 rounded-lg text-sm p-2.5 inline-flex items-center transition"
-              aria-label="Toggle Menu"
-            >
-              <Icon name="tabler:menu" class="w-6 h-6" />
-            </button>
+            <div class="flex items-center gap-4 md:hidden">
+              <ToggleTheme iconClass="w-6 h-6 text-white" />
+              <button
+                type="button"
+                id="menu-toggle"
+                class="text-white hover:text-red-100 dark:hover:text-emerald-100 rounded-lg text-sm p-2.5 inline-flex items-center transition"
+                aria-label="Toggle Menu"
+              >
+                <Icon name="tabler:menu" class="w-6 h-6" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- Menú Móvil -->
-<div class="hidden md:hidden fixed inset-0 z-50 bg-gray-800/60 backdrop-blur-sm">
-  <div class="fixed right-0 top-0 bottom-0 w-full max-w-xs bg-red-500 dark:bg-emerald-500">
-    <div class="flex justify-between items-center p-6">
-      <Image 
-        src={logo} 
-        alt="Pixel Living Logo" 
-        class="h-8 w-auto" 
-        width={120} 
-        height={40}
-      />
-      <button type="button" class="text-white hover:text-red-100 dark:hover:text-emerald-100">
-        <Icon name="tabler:x" class="w-6 h-6" />
-      </button>
-    </div>
+  <!-- Menú Móvil que crece desde la barra -->
+  <div 
+  id="mobile-menu" 
+  class="absolute left-0 mx-8 z-10 right-0 -mt-[69px] origin-top transform scale-y-0 transition-transform duration-300 ease-out md:hidden bg-red-500 dark:bg-emerald-500 rounded-2xl shadow-lg overflow-hidden"
+>
     <nav class="px-6">
-      <ul class="flex flex-col gap-4">
+      <ul class="flex flex-col pt-15">
         {
           links.map(({ text, href }) => (
             <li>
@@ -101,3 +92,84 @@ const links = [
     </nav>
   </div>
 </div>
+
+<style>
+  /* Clase para mostrar el menú */
+  .menu-visible {
+    transform: scaleY(1) !important;
+  }
+</style>
+
+<script>
+  function setupHeader() {
+    const header = document.getElementById('main-header');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuToggle = document.getElementById('menu-toggle');
+    
+    let lastScroll = 0;
+    const scrollThreshold = 100;
+    let isMenuOpen = false;
+
+    // Función para alternar el menú
+    function toggleMenu() {
+      if (!mobileMenu || !menuToggle) return;
+      
+      isMenuOpen = !isMenuOpen;
+      
+      if (isMenuOpen) {
+        mobileMenu.classList.add('menu-visible');
+        menuToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>';
+      } else {
+        mobileMenu.classList.remove('menu-visible');
+        menuToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>';
+      }
+    }
+
+    // Manejo del scroll
+    window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+  
+  // Si el menú está abierto, no ocultar el header
+  if (isMenuOpen) {
+    return;
+  }
+
+  if (currentScroll <= scrollThreshold) {
+    // En la parte superior de la página
+    header?.classList.remove('-translate-y-full');
+  } else if (currentScroll > lastScroll) {
+    // Scrolling hacia abajo - ocultar header
+    header?.classList.add('-translate-y-full');
+    // Cerrar el menú si está abierto
+    if (isMenuOpen) {
+      toggleMenu();
+    }
+  } else {
+    // Scrolling hacia arriba - mostrar header
+    header?.classList.remove('-translate-y-full');
+  }
+  
+  lastScroll = currentScroll;
+});
+
+
+    // Event listener para el botón de menú
+    menuToggle?.addEventListener('click', toggleMenu);
+
+    // Cerrar el menú cuando se hace click en un enlace
+    const menuLinks = mobileMenu?.querySelectorAll('a');
+    menuLinks?.forEach(link => {
+      link.addEventListener('click', () => {
+        if (isMenuOpen) {
+          toggleMenu();
+        }
+      });
+    });
+  }
+
+  // Ejecutar al cargar la página
+  setupHeader();
+  
+  // Ejecutar después de la navegación con View Transitions
+  document.addEventListener('astro:page-load', setupHeader);
+</script>
