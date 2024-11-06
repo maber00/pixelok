@@ -24,47 +24,55 @@ import building from '../../assets/images/PIXEL-LIVING-fachada.webp';
   </button>
 
   <div id="content" class="hidden mt-8 animate-slide-out-bottom">
+    <!-- Modificación del texto para ser responsivo -->
     <div class="mb-12">
-      <div class="mb-4">
-        <h3 class="text-4xl md:text-4xl font-bold tracking-tighter">
-          <span class="md:inline bg-amber-400 md:text-blue-900 dark:md:text-amber-400 text-blue-900 md:bg-transparent md:text-amber-400 p-2 md:p-0 rounded-lg">
-            ES SER UNO MÁS Y UNO MENOS, UNO QUE
+      <!-- Versión móvil: texto como párrafo -->
+      <div class="block md:hidden">
+        <h3 class="text-2xl font-bold tracking-tighter">
+          <span class="text-blue-900 dark:text-amber-400">
+            ES SER UNO MÁS Y UNO MENOS, UNO QUE DISFRUTA LOS ESPACIOS COLABORATIVOS
           </span>
         </h3>
       </div>
 
-      <div>
-        <h3 class="text-blue-900 dark:text-amber-400 text-lg md:text-2xl md:text-4xl font-bold tracking-tighter">
-          <span class="text-4xl md:text-9xl tracking-tighter">DISFRUTA LOS</span><br />
-          <span class="text-4xl md:text-9xl tracking-tighter">ESPACIOS</span><br />
-          <span class="text-4xl md:text-9xl tracking-tighter">COLABORATIVOS</span>
-        </h3>
+      <!-- Versión desktop: texto en formato original -->
+      <div class="hidden md:block">
+        <div class="mb-4">
+          <h3 class="text-4xl font-bold tracking-tighter">
+            <span class="text-blue-900 dark:text-amber-400">
+              ES SER UNO MÁS Y UNO MENOS, UNO QUE
+            </span>
+          </h3>
+        </div>
+        <div>
+          <h3 class="text-blue-900 dark:text-amber-400 text-4xl font-bold tracking-tighter">
+            <span class="text-9xl tracking-tighter">DISFRUTA LOS</span><br />
+            <span class="text-9xl tracking-tighter">ESPACIOS</span><br />
+            <span class="text-9xl tracking-tighter">COLABORATIVOS</span>
+          </h3>
+        </div>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-0 ">
-      {/* Primera fila - Imagen y texto lado a lado */}
+    <!-- Resto del contenido sin cambios -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
       <div class="m-2 order-last md:order-first">
         <Image
           src={coworking}
           alt="Espacio de coworking interior"
-          class="w-full h-[300px] rounded-lg object-cover "
+          class="w-full h-[300px] rounded-lg object-cover"
           width={600}
           height={400}
         />
       </div>
       <div class="m-2">
-        <p class="text-white bg-blue-900 p-6 h-[300px]  rounded-lg flex items-center text-2xl md:text-5xl font-bold leading-none uppercase">
+        <p class="text-white bg-blue-900 p-6 h-[300px] rounded-lg flex items-center text-2xl md:text-5xl font-bold leading-none uppercase">
           Y UNO MENOS EN LA OFICINA, UNO QUE SE MOVILIZA MEJOR Y UNO MENOS EN EL
         </p>
       </div>
     </div>
-      
-      
-      
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
 
-      {/* Segunda fila - Texto e imagen lado a lado */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
       <p class="text-white bg-orange-500 p-6 h-[300px] rounded-lg m-2 flex items-center text-2xl md:text-5xl font-bold leading-none uppercase">
         Uno que encuentra grandeza en sus espacios y uno menos que los desaprovecha.
       </p>
@@ -75,8 +83,6 @@ import building from '../../assets/images/PIXEL-LIVING-fachada.webp';
         width={600}
         height={400}
       />
-    </div>
-    
     </div>
   </div>
 </div>
