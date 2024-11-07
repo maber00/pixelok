@@ -1,17 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import terrazaImage from '../../assets/images/193-Terraza-006HD.webp';
-import biciImage1 from '../../assets/images/193-Terraza-006HD.webp';
-import biciImage2 from '../../assets/images/193-Terraza-006HD.webp';
-import bbqImage1 from '../../assets/images/193-Terraza-006HD.webp';
-import bbqImage2 from '../../assets/images/193-Terraza-006HD.webp';
-import fitnessImage1 from '../../assets/images/193-Terraza-006HD.webp';
-import fitnessImage2 from '../../assets/images/193-Terraza-006HD.webp';
-import fitnessImage3 from '../../assets/images/193-Terraza-006HD.webp';
-
-
-
-// Importa tus imágenes
+import Bicilovers from '../../assets/images/bicilovers.webp';
+import Firepits from '../../assets/images/firepits.webp';
 ---
 
 <div class="px-4 md:px-16 lg:p-24 pb-8 md:pb-16 lg:p-24">
@@ -19,100 +10,168 @@ import fitnessImage3 from '../../assets/images/193-Terraza-006HD.webp';
     TUS ESPACIO AFUERA <br>DE TU ESPACIO
   </h2>
 
-  <div class="grid grid-cols-2 gap-1"> {/* Gap mínimo para que parezca más un edificio */}
+  <div class="grid grid-cols-2 gap-1">
     {/* Fila 1 */}
-    <div class="bg-emerald-400 p-6 aspect-square">
-      <h3 class="text-2xl font-bold text-white mb-2">TERRAZA</h3>
-      <p class="text-white text-sm mb-4">Zona Social & Training Space</p>
-      <Image 
-        src={terrazaImage} 
-        alt="Terraza" 
-        class="w-full h-[calc(100%-4rem)] object-cover rounded"
-        width={400}
-        height={400}
-      />
+    <div class="bg-emerald-400 p-6 aspect-square space-block">
+      <div class="h-full flex flex-col">
+        <div class="mb-4">
+          <h3 class="text-2xl font-bold text-white mb-2">TERRAZA</h3>
+          <p class="text-white text-sm">Zona Social & Training Space</p>
+        </div>
+        <div class="flex-1 relative overflow-hidden rounded mobile-hidden">
+          <Image
+            src={terrazaImage}
+            alt="Terraza"
+            class="w-full h-full object-cover absolute inset-0"
+            width={400}
+            height={400}
+          />
+        </div>
+      </div>
     </div>
 
-    <div class="bg-orange-500 p-6 aspect-square">
-      <h3 class="text-2xl font-bold text-white mb-2">BICI LOVERS</h3>
-      <p class="text-white text-sm mb-4">Parking & Taller de bicis</p>
-      <div class="grid grid-cols-2 gap-2 h-[calc(100%-4rem)]">
-        <Image 
-          src={biciImage1} 
-          alt="Bici parking" 
-          class="w-full h-full object-cover rounded"
-          width={200}
-          height={200}
-        />
-        <Image 
-          src={biciImage2} 
-          alt="Bici taller" 
-          class="w-full h-full object-cover rounded"
-          width={200}
-          height={200}
-        />
+    <div class="bg-orange-500 p-6 aspect-square space-block">
+      <div class="h-full flex flex-col">
+        <div class="mb-4">
+          <h3 class="text-2xl font-bold text-white mb-2">BICI LOVERS</h3>
+          <p class="text-white text-sm">Parking & Taller de bicis</p>
+        </div>
+        <div class="flex-1 relative overflow-hidden rounded mobile-hidden">
+          <Image
+            src={Bicilovers}
+            alt="Bici parking"
+            class="w-full h-full object-cover absolute inset-0"
+            width={400}
+            height={400}
+          />
+        </div>
       </div>
     </div>
 
     {/* Fila 2 */}
-    <div class="bg-amber-300 p-6 aspect-square">
-      <h3 class="text-2xl font-bold text-white mb-2">FIRE PITS & ZONA BBQ</h3>
-      <p class="text-white text-sm mb-4">Comparte con tu comunidad y amigos</p>
-      <div class="grid grid-cols-2 gap-2 h-[calc(100%-4rem)]">
-        <Image 
-          src={bbqImage1} 
-          alt="Fire pit" 
-          class="w-full h-full object-cover rounded"
-          width={200}
-          height={200}
-        />
-        <Image 
-          src={bbqImage2} 
-          alt="BBQ" 
-          class="w-full h-full object-cover rounded"
-          width={200}
-          height={200}
-        />
+    <div class="bg-amber-300 p-6 aspect-square space-block">
+      <div class="h-full flex flex-col">
+        <div class="mb-4">
+          <h3 class="text-2xl font-bold text-white mb-2">FIRE PITS & ZONA BBQ</h3>
+          <p class="text-white text-sm">Comparte con tu comunidad y amigos</p>
+        </div>
+        <div class="flex-1 relative overflow-hidden rounded mobile-hidden">
+          <Image
+            src={Firepits}
+            alt="Fire pit"
+            class="w-full h-full object-cover absolute inset-0"
+            width={400}
+            height={400}
+          />
+        </div>
       </div>
     </div>
 
-    <div class="bg-blue-400 p-6 aspect-square">
-      <h3 class="text-2xl font-bold text-white mb-2">FITNESS LOVERS</h3>
-      <p class="text-white text-sm mb-4">Espacio para entrenar, TRX & Zona de Yoga</p>
-      <div class="grid grid-cols-3 gap-2 h-[calc(100%-4rem)]">
-        <Image 
-          src={fitnessImage1} 
-          alt="Training" 
-          class="w-full h-full object-cover rounded"
-          width={133}
-          height={200}
-        />
-        <Image 
-          src={fitnessImage2} 
-          alt="TRX" 
-          class="w-full h-full object-cover rounded"
-          width={133}
-          height={200}
-        />
-        <Image 
-          src={fitnessImage3} 
-          alt="Yoga" 
-          class="w-full h-full object-cover rounded"
-          width={133}
-          height={200}
-        />
+    <div class="bg-blue-400 p-6 aspect-square space-block">
+      <div class="h-full flex flex-col">
+        <div class="mb-4">
+          <h3 class="text-2xl font-bold text-white mb-2">FITNESS LOVERS</h3>
+          <p class="text-white text-sm">Espacio para entrenar, TRX & Zona de Yoga</p>
+        </div>
+        <div class="flex-1 relative overflow-hidden rounded mobile-hidden">
+          <Image
+            src={terrazaImage}
+            alt="Training"
+            class="w-full h-full object-cover absolute inset-0"
+            width={400}
+            height={400}
+          />
+        </div>
       </div>
     </div>
 
     {/* Fila 3 */}
-    <div class="bg-gray-800 p-6 aspect-square">
-      <h3 class="text-2xl font-bold text-white mb-2">ZONA COWORKING & SALA DE JUNTAS</h3>
-      <p class="text-white text-sm">Un nespacio, miles de ideas</p>
+    <div class="bg-gray-800 p-6 aspect-square space-block">
+      <div class="h-full flex flex-col">
+        <div class="mb-4">
+          <h3 class="text-2xl font-bold text-white mb-2">ZONA COWORK & SALA DE JUNTAS</h3>
+          <p class="text-white text-sm">Un espacio, miles de ideas</p>
+        </div>
+        <div class="flex-1 relative overflow-hidden rounded mobile-hidden">
+          <Image
+            src={terrazaImage}
+            alt="Cowork"
+            class="w-full h-full object-cover absolute inset-0"
+            width={400}
+            height={400}
+          />
+        </div>
+      </div>
     </div>
 
-    <div class="bg-pink-300 p-6 aspect-square">
-      <h3 class="text-2xl font-bold text-white mb-2">ZONA PET</h3>
-      <p class="text-white text-sm">Comparte con tu mejor amigo peludo</p>
+    <div class="bg-pink-300 p-6 aspect-square space-block">
+      <div class="h-full flex flex-col">
+        <div class="mb-4">
+          <h3 class="text-2xl font-bold text-white mb-2">ZONA PET</h3>
+          <p class="text-white text-sm">Comparte con tu mejor amigo peludo</p>
+        </div>
+        <div class="flex-1 relative overflow-hidden rounded mobile-hidden">
+          <Image
+            src={terrazaImage}
+            alt="Pet zone"
+            class="w-full h-full object-cover absolute inset-0"
+            width={400}
+            height={400}
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<style>
+  @media (max-width: 768px) {
+    .mobile-hidden {
+      display: none;
+    }
+
+    .space-block {
+      cursor: pointer;
+      min-height: 150px; /* Altura mínima para móvil */
+      height: auto;
+      aspect-ratio: auto !important; /* Anular el aspect-square en móvil */
+    }
+
+    .space-block.active {
+      min-height: 300px; /* Altura cuando está activo */
+      transition: min-height 0.3s ease-in-out;
+    }
+
+    .space-block.active .mobile-hidden {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  function setupMobileInteraction() {
+    const blocks = document.querySelectorAll('.space-block');
+    
+    blocks.forEach(block => {
+      block.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          blocks.forEach(b => b !== block && b.classList.remove('active'));
+          block.classList.toggle('active');
+        }
+      });
+    });
+  }
+
+  setupMobileInteraction();
+  document.addEventListener('astro:page-load', setupMobileInteraction);
+</script>
