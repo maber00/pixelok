@@ -4,19 +4,25 @@ import Hero from "../components/widgets/Hero.astro";
 import Layout from "../layouts/Layout.astro";
 import ContactForm from "../components/widgets/ContactForm.astro";
 import WhatIsPixel from "../components/widgets/WhatIsPixel.astro";
-import ApartmentSection from "../components/widgets/ApartmentSection.astro"; // Solo mantén esta
-import ApartmentSection2 from "../components/widgets/ApartmentSection2.astro"; // Solo mantén esta
-import Bilding from "../components/widgets/bilding.astro"; // Solo mantén esta
+import ApartmentSection from "../components/widgets/ApartmentSection.astro";
+import ApartmentSection2 from "../components/widgets/ApartmentSection2.astro";
+import Bilding from "../components/widgets/bilding.astro";
+import LocationMap from "../components/widgets/LocationMap.astro";
+import Footer from "../components/widgets/Footer.astro";
 
-
-
+// Versión simple del metadata
+const metadata = {
+  title: "Pixel Living - Home"
+};
 ---
 
-<Layout metadata={{}} title="Home">
+<Layout metadata={metadata}>
   <Hero />
-  <ContactForm />
   <WhatIsPixel />
   <ApartmentSection />
   <ApartmentSection2 />
-  <Bilding  />
+  <ContactForm />
+  <Bilding />
+  <LocationMap />
+  <Footer />
 </Layout>

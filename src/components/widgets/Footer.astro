@@ -1,104 +1,96 @@
 ---
+// src/components/widgets/Footer.astro
 import { Icon } from 'astro-icon/components';
-import { SITE } from 'astrowind:config';
-import { getHomePermalink } from '~/utils/permalinks';
-
-interface Link {
-  text?: string;
-  href?: string;
-  ariaLabel?: string;
-  icon?: string;
-}
-
-interface Links {
-  title?: string;
-  links: Array<Link>;
-}
-
-export interface Props {
-  links: Array<Links>;
-  secondaryLinks: Array<Link>;
-  socialLinks: Array<Link>;
-  footNote?: string;
-  theme?: string;
-}
-
-const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
+import { Image } from 'astro:assets';
+import logo from '../../assets/images/logo-pixel-living.webp';
 ---
 
-<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
-  <div class="dark:bg-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
-  <div
-    class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300 intersect-once intersect-quarter intercept-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-  >
-    <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
-      <div class="col-span-12 lg:col-span-4">
-        <div class="mb-2">
-          <a class="inline-block font-bold text-xl" href={getHomePermalink()}>{SITE?.name}</a>
-        </div>
-        <div class="text-sm text-muted flex gap-1">
-          {
-            secondaryLinks.map(({ text, href }, index) => (
-              <>
-                {index !== 0 ? ' · ' : ''}
-                <a
-                  class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
-                  href={href}
-                  set:html={text}
-                />
-              </>
-            ))
-          }
-        </div>
+<footer class="bg-black text-white py-12 px-8 md:px-16 lg:px-24">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+    <!-- Logo y Redes Sociales -->
+    <div class="space-y-6">
+      <Image
+        src={logo}
+        alt="Logo Pixel Living"
+        class="h-16 w-auto"
+        width={160}
+        height={64}
+      />
+      <p class="text-gray-400">Síguenos en nuestras redes</p>
+      <div class="flex space-x-4">
+        <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white">
+          <Icon name="tabler:brand-instagram" class="w-6 h-6" />
+        </a>
+        <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white">
+          <Icon name="tabler:brand-youtube" class="w-6 h-6" />
+        </a>
+        <a href="https://wa.me/573243558709" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white">
+          <Icon name="tabler:brand-whatsapp" class="w-6 h-6" />
+        </a>
       </div>
-      {
-        links.map(({ title, links }) => (
-          <div class="col-span-6 md:col-span-3 lg:col-span-2">
-            <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
-            {links && Array.isArray(links) && links.length > 0 && (
-              <ul class="text-sm">
-                {links.map(({ text, href, ariaLabel }) => (
-                  <li class="mb-2">
-                    <a
-                      class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
-                      href={href}
-                      aria-label={ariaLabel}
-                    >
-                      <Fragment set:html={text} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))
-      }
     </div>
-    <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
-      {
-        socialLinks?.length ? (
-          <ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4">
-            {socialLinks.map(({ ariaLabel, href, text, icon }) => (
-              <li>
-                <a
-                  class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-                  aria-label={ariaLabel}
-                  href={href}
-                >
-                  {icon && <Icon name={icon} class="w-5 h-5" />}
-                  <Fragment set:html={text} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          ''
-        )
-      }
 
-      <div class="text-sm mr-4 dark:text-muted">
-        <Fragment set:html={footNote} />
+    <!-- Formulario de Contacto -->
+    <div class="space-y-6">
+      <h3 class="text-xl font-bold">Contáctanos</h3>
+      <form class="space-y-4">
+        <input
+          type="text"
+          placeholder="Nombre"
+          class="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          class="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <textarea
+          rows="4"
+          placeholder="Mensaje"
+          class="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        ></textarea>
+        <button
+          type="submit"
+          class="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Enviar
+        </button>
+      </form>
+    </div>
+
+    <!-- Información de Contacto -->
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">
+          Pixel Living
+        </h3>
+        <address class="mt-2 not-italic text-gray-400">
+          Calle 98a # 51-40<br/>
+          Barrio La Castellana<br/>
+          Bogotá, Colombia<br/>
+          <a href="tel:+573243558709" class="hover:text-white flex items-center gap-2 mt-2">
+            <Icon name="tabler:phone" class="w-5 h-5" />
+            +57 324 3558709
+          </a>
+        </address>
+      </div>
+      
+      <!-- Horario de Atención -->
+      <div class="mt-6">
+        <h4 class="font-semibold text-gray-300 flex items-center gap-2">
+          <Icon name="tabler:clock" class="w-5 h-5" />
+          Horario de Atención
+        </h4>
+        <p class="text-gray-400 mt-2">
+          Lunes a Viernes: 9:00 AM - 6:00 PM<br/>
+          Sábado: 10:00 AM - 2:00 PM
+        </p>
       </div>
     </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+    <p>© {new Date().getFullYear()} Pixel Living. Todos los derechos reservados.</p>
   </div>
 </footer>
