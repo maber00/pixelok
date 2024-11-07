@@ -8,10 +8,10 @@ import building from '../../assets/images/PIXEL-LIVING-fachada.webp';
 <div class="max-w-7xl mx-auto px-4 py-16">
   <button
     type="button"
-    onclick="toggleContent()"
+    id="toggleButton"
     class="w-full bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-2xl text-left transition-colors flex items-center justify-between"
   >
-    <h2 class="text-2xl md:text-4xl font-bold">¿QUÉ ES VIVIR EN MODO PIXEL?</h2>
+    <h2 class="text-2xl font-black md:text-4xl font-bold">¿QUÉ ES VIVIR EN MODO PIXEL?</h2>
     <svg
       id="arrow"
       class="w-6 h-6 transition-transform duration-300"
@@ -23,77 +23,126 @@ import building from '../../assets/images/PIXEL-LIVING-fachada.webp';
     </svg>
   </button>
 
-  <div id="content" class="hidden mt-8 animate-slide-out-bottom">
-    <!-- Modificación del texto para ser responsivo -->
-    <div class="mb-12">
-      <!-- Versión móvil: texto como párrafo -->
-      <div class="block md:hidden">
-        <h3 class="text-2xl font-bold tracking-tighter">
+  <div id="pixelContent" class="hidden mt-8">
+    <!-- Versión móvil -->
+    <div class="block md:hidden mb-12">
+      <h3 class="text-4xl font-black tracking-tighter">
+        <span class="text-blue-900 dark:text-amber-400">
+          ES SER UNO MÁS Y UNO MENOS, UNO QUE DISFRUTA LOS ESPACIOS COLABORATIVOS
+        </span>
+      </h3>
+    </div>
+
+    <!-- Versión desktop -->
+    <div class="hidden md:block mb-12">
+      <div class="mb-4">
+        <h3 class="text-5xl font-bold tracking-tighter">
           <span class="text-blue-900 dark:text-amber-400">
-            ES SER UNO MÁS Y UNO MENOS, UNO QUE DISFRUTA LOS ESPACIOS COLABORATIVOS
+            ES SER UNO MÁS Y UNO MENOS, UNO QUE
           </span>
         </h3>
       </div>
-
-      <!-- Versión desktop: texto en formato original -->
-      <div class="hidden md:block">
-        <div class="mb-4">
-          <h3 class="text-4xl font-bold tracking-tighter">
-            <span class="text-blue-900 dark:text-amber-400">
-              ES SER UNO MÁS Y UNO MENOS, UNO QUE
-            </span>
-          </h3>
-        </div>
-        <div>
-          <h3 class="text-blue-900 dark:text-amber-400 text-4xl font-bold tracking-tighter">
-            <span class="text-9xl tracking-tighter">DISFRUTA LOS</span><br />
-            <span class="text-9xl tracking-tighter">ESPACIOS</span><br />
-            <span class="text-9xl tracking-tighter">COLABORATIVOS</span>
-          </h3>
-        </div>
+      <div>
+        <h3 class="text-blue-900 dark:text-amber-400 text-4xl font-bold tracking-tighter">
+          <span class="text-9xl tracking-tighter">DISFRUTA LOS</span><br />
+          <span class="text-9xl tracking-tighter">ESPACIOS</span><br />
+          <span class="text-9xl tracking-tighter">COLABORATIVOS</span>
+        </h3>
       </div>
     </div>
 
-    <!-- Resto del contenido sin cambios -->
+    <!-- Grids de imágenes y texto -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
       <div class="m-2 order-last md:order-first">
         <Image
           src={coworking}
           alt="Espacio de coworking interior"
           class="w-full h-[300px] rounded-lg object-cover"
-          width={600}
-          height={400}
+          width={800}
+          height={600}
         />
       </div>
       <div class="m-2">
-        <p class="text-white bg-blue-900 p-6 h-[300px] rounded-lg flex items-center text-2xl md:text-5xl font-bold leading-none uppercase">
+        <p class="text-white bg-blue-900 p-6 h-[300px] rounded-lg flex items-center text-3xl md:text-5xl font-bold leading-none uppercase">
           Y UNO MENOS EN LA OFICINA, UNO QUE SE MOVILIZA MEJOR Y UNO MENOS EN EL
         </p>
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
-      <p class="text-white bg-orange-500 p-6 h-[300px] rounded-lg m-2 flex items-center text-2xl md:text-5xl font-bold leading-none uppercase">
+      <p class="text-white bg-orange-500 p-6 h-[300px] rounded-lg m-2 flex items-center text-3xl md:text-5xl font-bold leading-none uppercase">
         Uno que encuentra grandeza en sus espacios y uno menos que los desaprovecha.
       </p>
       <Image
         src={building}
         alt="Edificio exterior"
         class="w-full h-[300px] m-2 rounded-lg object-cover order-last"
-        width={600}
-        height={400}
+        width={800}
+        height={600}
       />
     </div>
   </div>
 </div>
 
-<script is:inline>
-  function toggleContent() {
-    const content = document.getElementById('content');
+<script>
+  import { gsap } from 'gsap';
+
+  const setupToggle = () => {
+    const button = document.getElementById('toggleButton');
+    const content = document.getElementById('pixelContent');
     const arrow = document.getElementById('arrow');
-    if (content && arrow) {
-      content.classList.toggle('hidden');
-      arrow.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
-    }
-  }
+
+    if (!button || !content || !arrow) return;
+
+    let isOpen = false;
+
+    button.addEventListener('click', () => {
+      isOpen = !isOpen;
+      
+      if (isOpen) {
+        // Mostrar contenido
+        content.classList.remove('hidden');
+        
+        gsap.fromTo(content, 
+          {
+            opacity: 0,
+            y: -20,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out"
+          }
+        );
+
+        gsap.to(arrow, {
+          rotation: 180,
+          duration: 0.3
+        });
+      } else {
+        // Ocultar contenido
+        gsap.to(content, {
+          opacity: 0,
+          y: -20,
+          duration: 0.3,
+          ease: "power2.in",
+          onComplete: () => {
+            content.classList.add('hidden');
+          }
+        });
+
+        gsap.to(arrow, {
+          rotation: 0,
+          duration: 0.3
+        });
+      }
+    });
+  };
+
+  // Setup on initial load
+  setupToggle();
+
+  // Setup on page transitions
+  document.addEventListener('astro:page-load', setupToggle);
 </script>

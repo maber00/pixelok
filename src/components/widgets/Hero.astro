@@ -7,24 +7,42 @@ import terraza from '../../assets/images/193-Terraza-006HD.webp';
 <section class="w-full min-h-screen md:h-[80vh] p-4 md:px-8">
   <div class="h-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 relative">
     <!-- Primera columna: Vive en modo pixel -->
-    <div class="bg-emerald-500 dark:bg-red-500 rounded-lg border-4 dark:border-red-800 border-emerald-600 flex items-center p-4 md:p-0 justify-start md:justify-center h-[200px] md:h-full hover:scale-[1.02] transition-transform duration-300">
-      <h1 class="text-white text-4xl md:text-5xl lg:text-7xl font-bold text-left md:text-left">
+    <div class="bg-emerald-500 dark:bg-red-500 rounded-lg border-4 dark:border-red-800 border-emerald-600 flex items-center p-4 md:p-0 justify-start md:justify-center h-[200px] md:h-full">
+      <h1 class="glitch-text text-white text-4xl md:text-5xl lg:text-7xl font-bold text-left md:text-left">
+        <span aria-hidden="true">VIVE EN<br />MODO<br />PIXEL</span>
         VIVE EN<br />MODO<br />PIXEL
+        <span aria-hidden="true">VIVE EN<br />MODO<br />PIXEL</span>
       </h1>
     </div>
 
     <!-- Columna media: Video + Imagen -->
     <div class="flex flex-col gap-4 normal-content">
       <!-- Video de YouTube -->
-      <div class="w-full aspect-video bg-yellow-400 rounded-lg overflow-hidden cursor-pointer video-container" data-position="top">
-        <iframe
-          class="w-full h-full"
-          src="https://www.youtube.com/embed/_-am3wcfrig"
-          title="YouTube video"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+      <div 
+        id="youtube-facade" 
+        class="w-full aspect-video bg-yellow-400 rounded-lg overflow-hidden cursor-pointer video-container relative" 
+        data-position="top"
+        data-video-id="_-am3wcfrig"
+      >
+        <!-- Overlay con flecha y mensaje -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center  hover:bg-black/40 transition-all duration-300 p-4">
+          <!-- Mensaje superior -->
+          <h3 class="bg-white text-yellow-500 p-2 text-2xl md:text-3xl font-bold mb-4 text-center drop-shadow-lg">
+            VIVE DIFERENTE
+          </h3>
+          
+          <!-- Ícono de reproducción -->
+          <svg 
+            class="w-16 h-16 text-white drop-shadow-lg animate-pulse" 
+            fill="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path d="M12,0C5.373,0,0,5.373,0,12s5.373,12,12,12s12-5.373,12-12S18.627,0,12,0z M17.333,12.427l-6.666,4C10.461,16.54,10.231,16.6,10,16.6c-0.22,0-0.441-0.055-0.639-0.163C8.949,16.196,8.8,15.784,8.8,15.333V7.333C8.8,6.883,8.949,6.471,9.361,6.231c0.412-0.24,0.923-0.216,1.306,0.067l6.666,4c0.361,0.217,0.6,0.619,0.6,1.067S17.694,12.212,17.333,12.427z"/>
+          </svg>
+
+          <!-- Link url -->
+          
+        </div>
       </div>
 
       <!-- Imagen inferior -->
@@ -66,16 +84,135 @@ import terraza from '../../assets/images/193-Terraza-006HD.webp';
 </section>
 
 <style>
-  .image-container, .video-container {
-    transition: all 0.3s ease-in-out;
-  }
+  /* Solo aplicar efectos de hover en dispositivos no móviles */
+  @media (min-width: 768px) {
+    .image-container, 
+    .video-container {
+      transition: all 0.3s ease-in-out;
+    }
 
-  .image-container:hover, .video-container:hover {
-    transform: scale(1.02);
+    .image-container:hover, 
+    .video-container:hover {
+      transform: scale(1.02);
+    }
   }
 
   .expanded-container {
     transition: all 0.3s ease-in-out;
+  }
+
+  /* Efecto Glitch */
+  .glitch-text {
+    position: relative;
+    animation: glitch 2s infinite;
+  }
+
+  .glitch-text span {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .glitch-text span:first-child {
+    animation: glitch 650ms infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    transform: translate(-0.025em, -0.0125em);
+    opacity: 0.75;
+  }
+
+  .glitch-text span:last-child {
+    animation: glitch 375ms infinite;
+    clip-path: polygon(0 80%, 100% 20%, 100% 100%, 0 100%);
+    transform: translate(0.025em, 0.025em);
+    opacity: 0.75;
+  }
+
+  @keyframes glitch {
+    0% {
+      text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                   0.025em 0.04em 0 #fffc00;
+    }
+    15% {
+      text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                   0.025em 0.04em 0 #fffc00;
+    }
+    16% {
+      text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+                   -0.05em -0.05em 0 #fffc00;
+    }
+    49% {
+      text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+                   -0.05em -0.05em 0 #fffc00;
+    }
+    50% {
+      text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+                   0 -0.04em 0 #fffc00;
+    }
+    99% {
+      text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+                   0 -0.04em 0 #fffc00;
+    }
+    100% {
+      text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff,
+                   -0.04em -0.025em 0 #fffc00;
+    }
+  }
+
+  /* Efecto Pixelado */
+  .glitch-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 40%,
+      rgba(255, 255, 255, 0.1) 40%,
+      transparent 60%
+    );
+    background-size: 200% 100%;
+    animation: pixel-move 3s linear infinite;
+  }
+
+  @keyframes pixel-move {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: -100% 0;
+    }
+  }
+
+  /* Animación del pulso personalizada */
+  @keyframes custom-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+
+  .animate-pulse {
+    animation: custom-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Media query para reducir la intensidad en móviles */
+  @media (max-width: 768px) {
+    .glitch-text span:first-child,
+    .glitch-text span:last-child {
+      animation-duration: 2s;
+      transform: none;
+    }
+    
+    .glitch-text {
+      animation-duration: 4s;
+    }
   }
 </style>
 
@@ -84,12 +221,14 @@ import terraza from '../../assets/images/193-Terraza-006HD.webp';
     const expandedContainer = document.querySelector<HTMLElement>('.expanded-container');
     const normalContent = document.querySelector<HTMLElement>('.normal-content');
     const imageContainers = document.querySelectorAll<HTMLElement>('.image-container');
-    const videoContainer = document.querySelector<HTMLElement>('.video-container');
+    const youtubeFacade = document.querySelector<HTMLElement>('#youtube-facade');
     const expandedImage = expandedContainer?.querySelector('img');
     const expandedVideo = expandedContainer?.querySelector('iframe');
     const closeButton = expandedContainer?.querySelector('button');
     
     function showExpandedContent(type: 'image' | 'video', src: string) {
+      if (window.innerWidth < 768) return; // No expandir en móviles
+
       if (expandedContainer && expandedImage && expandedVideo && normalContent) {
         if (type === 'image') {
           expandedImage.src = src;
@@ -113,6 +252,7 @@ import terraza from '../../assets/images/193-Terraza-006HD.webp';
       }
     }
 
+    // Event Listeners para imágenes
     imageContainers.forEach(container => {
       container.addEventListener('click', () => {
         const img = container.querySelector('img');
@@ -122,13 +262,30 @@ import terraza from '../../assets/images/193-Terraza-006HD.webp';
       });
     });
 
-    videoContainer?.addEventListener('click', () => {
-      const iframe = videoContainer.querySelector('iframe');
-      if (iframe) {
-        showExpandedContent('video', iframe.src);
+    // Event Listener para el video
+    youtubeFacade?.addEventListener('click', () => {
+      const videoId = youtubeFacade.dataset.videoId;
+      if (videoId) {
+        if (window.innerWidth < 768) {
+          // En móviles, reproducir en el mismo contenedor
+          youtubeFacade.innerHTML = `
+            <iframe
+              class="w-full h-full"
+              src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+              title="YouTube video"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          `;
+        } else {
+          // En desktop, expandir
+          showExpandedContent('video', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+        }
       }
     });
 
+    // Event Listener para cerrar
     closeButton?.addEventListener('click', hideExpandedContent);
   }
 
