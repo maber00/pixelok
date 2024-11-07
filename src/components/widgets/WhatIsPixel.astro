@@ -1,5 +1,4 @@
 ---
-// src/components/WhatIsPixel.astro
 import { Image } from 'astro:assets';
 import coworking from '../../assets/images/Cokorking-Pixel-Living.webp';
 import building from '../../assets/images/PIXEL-LIVING-fachada.webp';
@@ -52,37 +51,46 @@ import building from '../../assets/images/PIXEL-LIVING-fachada.webp';
     </div>
 
     <!-- Grids de imágenes y texto -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
-      <div class="m-2 order-last md:order-first">
-        <Image
-          src={coworking}
-          alt="Espacio de coworking interior"
-          class="w-full h-[300px] rounded-lg object-cover"
-          width={800}
-          height={600}
-        />
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="aspect-[4/3] order-last md:order-first">
+        <div class="h-full w-full relative rounded-lg overflow-hidden">
+          <Image
+            src={coworking}
+            alt="Espacio de coworking interior"
+            class="w-full h-full object-cover absolute inset-0"
+            width={800}
+            height={600}
+          />
+        </div>
       </div>
-      <div class="m-2">
-        <p class="text-white bg-blue-900 p-6 h-[300px] rounded-lg flex items-center text-3xl md:text-5xl font-bold leading-none uppercase">
+      <div class="aspect-[4/3]">
+        <p class="text-white bg-blue-900 p-6 h-full rounded-lg flex items-center text-3xl md:text-5xl font-bold leading-none uppercase">
           Y UNO MENOS EN LA OFICINA, UNO QUE SE MOVILIZA MEJOR Y UNO MENOS EN EL
         </p>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
-      <p class="text-white bg-orange-500 p-6 h-[300px] rounded-lg m-2 flex items-center text-3xl md:text-5xl font-bold leading-none uppercase">
-        Uno que encuentra grandeza en sus espacios y uno menos que los desaprovecha.
-      </p>
-      <Image
-        src={building}
-        alt="Edificio exterior"
-        class="w-full h-[300px] m-2 rounded-lg object-cover order-last"
-        width={800}
-        height={600}
-      />
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+      <div class="aspect-[4/3]">
+        <p class="text-white bg-orange-500 p-6 h-full rounded-lg flex items-center text-3xl md:text-5xl font-bold leading-none uppercase">
+          Uno que encuentra grandeza en sus espacios y uno menos que los desaprovecha.
+        </p>
+      </div>
+      <div class="aspect-[4/3]">
+        <div class="h-full w-full relative rounded-lg overflow-hidden">
+          <Image
+            src={building}
+            alt="Edificio exterior"
+            class="w-full h-full object-cover absolute inset-0"
+            width={800}
+            height={600}
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
 
 <script>
   import { gsap } from 'gsap';
